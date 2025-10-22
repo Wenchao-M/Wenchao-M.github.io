@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RigAnyFace: A scalable neural auto-rigging framework for facial meshes of diverse topologies, including those with multiple disconnected components.">
+  <meta name="keywords" content="RigAnyFace, Facial Rigging, Auto-Rigging, FACS, Blendshapes, 3D Animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RigAnyFace: Scaling Neural Facial Mesh Auto-Rigging with Unlabeled Data</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="data:,">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">RigAnyFace: Scaling Neural Facial Mesh Auto-Rigging with Unlabeled Data</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wenchao-m.github.io">Wenchao Ma</a><sup>1†*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=ap4dqrwAAAAJ&hl=en">Dario Kneubühler</a><sup>2†</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/maurice-chu-1ab3731a">Maurice Chu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/ian-sachs-1593172">Ian Sachs</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=RB6RIxkAAAAJ&hl=en">Haomiao Jiang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.ist.psu.edu/suh972/">Sharon X. Huang</a><sup>1</sup>
+            </span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Penn State University,</span>
+            <span class="author-block"><sup>2</sup>Roblox</span>
+          </div>
+          <div class="is-size-6 publication-authors" style="margin-top: 10px;">
+            <span class="author-block"><sup>†</sup>Equal contribution</span>
+            <span class="author-block"><sup>*</sup>Work partially completed during an internship at Roblox</span>
+          </div>
+          <div class="is-size-5 publication-venue has-text-centered" style="margin-top: 15px; text-align: center; width: 100%;">
+            <span class="author-block"><b>NeurIPS 2025</b></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" style="padding-top: 0rem; padding-bottom: 1rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-centered">
+          <p style="font-size: 1.1rem; margin-bottom: 0;">
+            <strong>TL;DR:</strong> We propose a scalable neural auto-rigging framework for facial meshes of diverse topologies with multiple disconnected components.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" src="./static/figures/teaser.png" alt="RigAnyFace teaser" style="width: 100%; height: auto;">
+      <h2 class="subtitle has-text-left">
+        We present RigAnyFace (RAF), an auto-rigging framework that supports facial meshes of diverse topologies with multiple disconnected components such as eyeballs. These meshes are drawn from diverse sources and cover both humanoid and non-humanoid heads. Given only a neutral facial mesh and explicitly controllable FACS parameters specifying activated action units, RAF accurately deforms the input mesh into corresponding FACS poses, creating an expressive blendshape rig.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we present RigAnyFace (RAF), a scalable neural auto-rigging framework for facial meshes of diverse topologies, including those with multiple disconnected components. RAF deforms a static neutral facial mesh into industry-standard FACS poses to form an expressive blendshape rig. Deformations are predicted by a triangulation-agnostic surface learning network augmented with our tailored architecture design to condition on FACS parameters and efficiently process disconnected components. For training, we curated a dataset of facial meshes, with a subset meticulously rigged by professional artists to serve as accurate 3D ground truth for deformation supervision. Due to the high cost of manual rigging, this subset is limited in size, constraining the generalization ability of models trained exclusively on it. To address this, we design a 2D supervision strategy for unlabeled neutral meshes without rigs. This strategy increases data diversity and allows for scaled training, thereby enhancing the generalization ability of models trained on this augmented data. Extensive experiments demonstrate that RAF is able to rig meshes of diverse topologies on not only our artist-crafted assets but also in-the-wild samples, outperforming previous works in accuracy and generalizability. Moreover, our method advances beyond prior work by supporting multiple disconnected components, such as eyeballs, for more detailed expression animation. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+  <!-- Applications. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Applications</h2>
+        <div class="content has-text-justified">
+          <p>
+            RigAnyFace enables various downstream applications:
+          </p>
+          <ul>
+            <li><b>User-Controlled Animation:</b> Artists can directly edit FACS parameters to pose meshes.</li>
+            <li><b>Video-to-Mesh Retargeting:</b> Transfer facial expressions from videos to 3D meshes.</li>
+            <li><b>Animating Generated Meshes:</b> Automatically rig meshes from text-to-3D models.</li>
+          </ul>
+        </div>
+        <!-- Placeholder for applications -->
+        <div style="text-align: center; margin: 20px 0;">
+          <video controls autoplay loop muted playsinline style="max-width: 100%; height: auto;">
+            <source src="static/video/RigAnyFace-application.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  <!--/ Applications. -->
+  </div>
+
+   <!-- Data Collection. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Data Collection</h2>
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="static/figures/datacollection.png" alt="Data Collection" style="max-width: 100%; height: auto;">
+          <p style="text-align: left;"> We collect a diverse set of artist-crafted facial meshes for model training and evaluation. (a) (i) The dataset includes meshes with multiple disconnected components (e.g., eyeballs) and diverse facial shapes. (ii) A subset of neutral head meshes is annotated with blendshape rigs by professional artists. (iii) To expand the dataset, we apply a head interpolation strategy based on standardized UV layouts.
+(b) For the remaining unrigged samples, we generate 2D supervision. Given a posed image rendered from a rigged head and a neutral image from an unrigged head, a 2D animation model transfers the expression while preserving identity. A flow estimation model then predicts pixel offsets between the neutral and synthesized posed images as 2D displacements. </p>
+        </div>
+      </div>
+    </div>
+    <!--/  Data Collection. -->
+
+    <!-- Method Overview. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method Overview</h2>
+       <div style="text-align: center; margin: 20px 0;">
+          <img src="static/figures/model.png" alt="Method Architecture" style="max-width: 100%; height: auto;">
+          <p style="text-align: left;"> (a) Given a neutral facial mesh, our deformation model predicts the 3D displacement needed to deform the mesh into different expressions based on the input FACS vector. During training, 2D supervision is utilized for both rigged and unrigged heads, while 3D supervision is exclusively applied to rigged heads. (b) We modify the original diffusion block in DiffusionNet to support the FACS vector as an additional conditional inputs (left). Additionally, we design a global encoder that processes vertex positions and normals of the neutral facial mesh to capture holistic information across disconnected components (right).</p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method Overview. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <h3 class="title is-4">Artist-Crafted Meshes</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our method achieves high-quality rigging results on diverse facial meshes, including humanoid and non-humanoid characters with multiple disconnected components.
+          </p>
+        </div>
+        <!-- Placeholder for results -->
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="static/figures/internal_data.png" alt="Artist-Crafted Results Gallery" style="max-width: 100%; height: auto;">
+          <p>Qualitative results on our artist-crafted unrigged heads.</p>
+        </div>
+
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="static/figures/in-house_compare_baseline.png" alt="Artist-Crafted Results Gallery" style="max-width: 70%; height: auto;">
+          <p>Comparison with Baseline Methods. Reference mesh and <span style="color: blue;">corresponding points</span> are provided for Deformation Transfer.</p>
+        </div>
+
+        <h3 class="title is-4">In-the-Wild Meshes</h3>
+        <div class="content has-text-justified">
+        </div>
+        <!-- Placeholder for in-the-wild results -->
+        <div style="text-align: center; margin: 20px 0;">
+          <img src="static/figures/wild_compare.png" alt="In-the-Wild Results Gallery" style="max-width: 100%; height: auto;">
+          <p>
+            RigAnyFace generalizes well to in-the-wild facial meshes from ICT FaceKit, Objaverse, and CGTrader compared with piror art NFR. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{ma2025riganyface,
+  title     = {RigAnyFace: Scaling Neural Facial Mesh Auto-Rigging with Unlabeled Data},
+  author    = {Ma, Wenchao and Kneubuehler, Dario and Chu, Maurice and Sachs, Ian and Jiang, Haomiao and Huang, Sharon X.},
+  booktitle = {39th Conference on Neural Information Processing Systems (NeurIPS)},
+  year      = {2025}
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+     We thank <a href="https://www.dgp.toronto.edu/~hsuehtil/">Hsueh-Ti Derek Liu</a>, <a href="https://www.cs.ubc.ca/~araujoc/">Chrystiano Araújo</a>, and <a href="https://jinseokbae.github.io/">Jinseok Bae</a> for proofreading the draft and providing helpful comments, and Jihyun Yoon for curating the dataset. We also thank the authors of <a href="https://github.com/nmwsharp/diffusion-net">DiffusionNet</a>, <a href="https://github.com/megvii-research/megactor">MegActor</a>, and <a href="https://github.com/dafei-qin/NFR_pytorch">NFR</a> for their codes.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="#">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="#" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
